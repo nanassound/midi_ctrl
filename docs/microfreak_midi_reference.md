@@ -138,9 +138,42 @@ Arturia,MicroFreak,Keyboard,Keyboard hold button (toggle),,64,,0,127,,,,,0-based
 Arturia,MicroFreak,Keyboard,Keyboard spice,,2,,0,127,,,,,0-based,,
 ```
 
-## Oscillator type in MicroFreak (cc 9) from first to last
+## Oscillator type in MicroFreak (CC 9) from first to last
 
-Wave (cc 10), Timbre (cc 12), Shape (cc 13) will control different parameter for each oscillator
+Wave (CC 10), Timbre (CC 12), Shape (CC 13) will control different parameter for each oscillator.
+
+**Note:** Use the `microfreak_set_oscillator` tool to switch oscillator types by name. The tool automatically maps oscillator names to their correct CC 9 values.
+
+### Oscillator Type CC 9 Value Mapping
+
+| Position | Oscillator Type | CC 9 Value | Tool Name |
+|----------|----------------|------------|-----------|
+| 0 | Basic Waves | 0 | BasicWaves |
+| 1 | SuperWave | 6 | SuperWave |
+| 2 | Wavetable | 12 | Wavetable |
+| 3 | Harmo | 18 | Harmo |
+| 4 | Karplus Strong | 24 | KarplusStr |
+| 5 | V. Analog | 30 | V.Analog |
+| 6 | Waveshaper | 36 | Waveshaper |
+| 7 | Two Op. FM | 42 | TwoOpFM |
+| 8 | Formant | 48 | Formant |
+| 9 | Chords | 55 | Chords |
+| 10 | Speech | 61 | Speech |
+| 11 | Modal | 67 | Modal |
+| 12 | Noise | 73 | Noise |
+| 13 | Bass | 79 | Bass |
+| 14 | SawX | 85 | SawX |
+| 15 | Noise Engineering Harm | 91 | HarmNE |
+| 16 | Wave User | 97 | WaveUser |
+| 17 | Sample | 103 | Sample |
+| 18 | Scan Grains | 109 | ScanGrains |
+| 19 | Cloud Grains | 115 | CloudGrains |
+| 20 | Hit Grains | 121 | HitGrains |
+| 21 | Vocoder | 127 | Vocoder |
+
+*Values are evenly distributed across the 0-127 range with 22 oscillator types (step size ≈6.05)*
+
+### Oscillator Parameters
 
 ```csv
 Oscillator type,wave,timbre,shape

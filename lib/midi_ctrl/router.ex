@@ -115,6 +115,57 @@ defmodule MIDICtrl.Router do
               },
               required: ["port_pattern", "cc_changes"]
             }
+          },
+          %{
+            name: "microfreak_set_oscillator",
+            description:
+              "Set the oscillator type on the MicroFreak synthesizer. Uses named oscillator types for accurate switching between the 19 different oscillator engines.",
+            inputSchema: %{
+              type: "object",
+              properties: %{
+                port_pattern: %{
+                  type: "string",
+                  description:
+                    "Pattern to match MIDI port name (e.g., 'MicroFreak', 'Arturia', or exact port name from list_ports)"
+                },
+                oscillator_type: %{
+                  type: "string",
+                  description: "Name of the oscillator type to activate",
+                  enum: [
+                    "BasicWaves",
+                    "SuperWave",
+                    "Wavetable",
+                    "Harmo",
+                    "KarplusStr",
+                    "V.Analog",
+                    "Waveshaper",
+                    "TwoOpFM",
+                    "Formant",
+                    "Chords",
+                    "Speech",
+                    "Modal",
+                    "Noise",
+                    "Bass",
+                    "SawX",
+                    "HarmNE",
+                    "WaveUser",
+                    "Sample",
+                    "ScanGrains",
+                    "CloudGrains",
+                    "HitGrains",
+                    "Vocoder"
+                  ]
+                },
+                channel: %{
+                  type: "integer",
+                  description:
+                    "MIDI channel (0-15, where 0 = channel 1). Optional, defaults to 0",
+                  minimum: 0,
+                  maximum: 15
+                }
+              },
+              required: ["port_pattern", "oscillator_type"]
+            }
           }
         ]
       }
@@ -195,6 +246,44 @@ defmodule MIDICtrl.Router do
           error: %{
             code: -32603,
             message: "MIDI operation failed: #{reason}"
+          }
+        }
+    end
+  end
+
+  defp handle_mcp_method(
+         "tools/call",
+         id,
+         %{"name" => "microfreak_set_oscillator", "arguments" => args}
+       ) do
+    # Extract arguments with defaults
+    port_pattern = Map.get(args, "port_pattern")
+    oscillator_type = Map.get(args, "oscillator_type")
+    channel = Map.get(args, "channel", 0)
+
+    # Call the MIDI operation
+    case MIDIOps.set_oscillator(port_pattern, oscillator_type, channel) do
+      {:ok, message} ->
+        %{
+          jsonrpc: "2.0",
+          id: id,
+          result: %{
+            content: [
+              %{
+                type: "text",
+                text: message
+              }
+            ]
+          }
+        }
+
+      {:error, reason} ->
+        %{
+          jsonrpc: "2.0",
+          id: id,
+          error: %{
+            code: -32603,
+            message: "Failed to set oscillator: #{reason}"
           }
         }
     end
