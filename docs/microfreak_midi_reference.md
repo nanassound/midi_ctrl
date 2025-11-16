@@ -138,6 +138,36 @@ Arturia,MicroFreak,Keyboard,Keyboard hold button (toggle),,64,,0,127,,,,,0-based
 Arturia,MicroFreak,Keyboard,Keyboard spice,,2,,0,127,,,,,0-based,,
 ```
 
+## Oscillator type in MicroFreak (cc 9) from first to last
+
+Wave (cc 10), Timbre (cc 12), Shape (cc 13) will control different parameter for each oscillator
+
+```csv
+Oscillator type,wave,timbre,shape
+BasicWaves,Morph,Sym,Sub
+SuperWave,Wave (saw;square;triangle;sinus),Detune,Volume
+Wavetable,Table,Position,Chorus
+Harmo,Content,Sculpting,Chorus
+KarplusStr,Bow,Position,Decay
+V. Analog (virtual analog),Detune,Shape,Wave
+Waveshaper,Wave,Amount,Asym
+Two Op. FM,Ratio,Amount,Feedback
+Formant,Interval,Formant,Shape
+Chords,Type (oct;5;sus4;m;m7;m9;m11;69;M9;M7;M),Inv/Trsp,Waveform
+Speech,Type,Timbre,Word
+Modal,Inharm,Timbre,Decay
+Noise,Type,Rate,Balance
+Bass,Saturate,Fold,Noise
+SawX,SawMod,Shape,Noise
+Noise Engineering Harm,Spread,Rectify,Noise
+WaveUser,Table,Position,Bitdepth
+Sample,Start,Length,Loop
+Scan Grains,Scan,Density,Chaos
+Cloud Grains,Start,Density,Chaos
+Hit Grains,Start,Density,Shape
+Vocoder,Start,Density,Shape
+```
+
 ## Future Enhancements
 
 Planned features for future versions:

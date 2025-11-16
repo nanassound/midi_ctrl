@@ -35,7 +35,10 @@ defmodule MIDICtrl.Router do
       id: id,
       result: %{
         protocolVersion: "2024-11-05",
-        capabilities: %{tools: %{}},
+        capabilities: %{
+          tools: %{},
+          resources: %{}
+        },
         serverInfo: %{name: "MIDI Ctrl", version: "0.1.0"}
       }
     }
@@ -118,6 +121,24 @@ defmodule MIDICtrl.Router do
     }
   end
 
+  defp handle_mcp_method("resources/list", id, _params) do
+    %{
+      jsonrpc: "2.0",
+      id: id,
+      result: %{
+        resources: [
+          %{
+            uri: "microfreak://midi-reference",
+            name: "MicroFreak MIDI Reference",
+            description:
+              "Complete MIDI CC reference for Arturia MicroFreak synthesizer including parameter tables, examples, and oscillator types",
+            mimeType: "text/markdown"
+          }
+        ]
+      }
+    }
+  end
+
   defp handle_mcp_method("tools/call", id, %{"name" => "list_ports"} = _params) do
     ports_info = MIDIOps.list_ports()
 
@@ -179,6 +200,37 @@ defmodule MIDICtrl.Router do
     end
   end
 
+  defp handle_mcp_method("resources/read", id, %{"uri" => uri} = _params) do
+    case uri do
+      "microfreak://midi-reference" ->
+        content = read_microfreak_reference()
+
+        %{
+          jsonrpc: "2.0",
+          id: id,
+          result: %{
+            contents: [
+              %{
+                uri: "microfreak://midi-reference",
+                mimeType: "text/markdown",
+                text: content
+              }
+            ]
+          }
+        }
+
+      _ ->
+        %{
+          jsonrpc: "2.0",
+          id: id,
+          error: %{
+            code: -32602,
+            message: "Unknown resource URI: #{uri}"
+          }
+        }
+    end
+  end
+
   defp handle_mcp_method("notifications/cancelled", nil, _params) do
     %{}
   end
@@ -192,6 +244,22 @@ defmodule MIDICtrl.Router do
         message: "Method not found: #{method}"
       }
     }
+  end
+
+  # Helper function to read MicroFreak reference documentation
+  defp read_microfreak_reference do
+    path = Path.join([__DIR__, "..", "..", "docs", "microfreak_midi_reference.md"])
+
+    case File.read(path) do
+      {:ok, content} ->
+        content
+
+      {:error, :enoent} ->
+        raise "MicroFreak reference file not found at: #{path}"
+
+      {:error, reason} ->
+        raise "Failed to read MicroFreak reference: #{reason}"
+    end
   end
 
   # Catch-all for unknown routes
