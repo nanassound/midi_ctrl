@@ -1,8 +1,8 @@
 # MIDICtrl
 
-**Control your Arturia MicroFreak synthesizer with AI**
+**Control Arturia MicroFreak synthesizer with AI**
 
-MIDICtrl is an HTTP-based [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that bridges MCP-compatible LLMs with your Arturia MicroFreak synthesizer. Adjust parameters, switch oscillator types, or explore sounds—all through natural language conversation. Works with any LLM client that supports the MCP protocol.
+MIDICtrl is an HTTP-based [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that bridges MCP-compatible LLMs with Arturia MicroFreak synthesizer. Adjust parameters, switch oscillator types, or explore sounds—all through natural language conversation. Works with any LLM client that supports the MCP protocol.
 
 ```
 You: "Make the filter brighter and increase resonance"
@@ -67,10 +67,10 @@ Your Arturia MicroFreak responds
 
 ```bash
 # Download the macOS release
-wget https://github.com/nanassound/midi_ctrl/releases/download/v0.1.0/midi_ctrl-macos.tar.gz
+wget https://github.com/nanassound/midi_ctrl/releases/download/v0.1.0/midi_ctrl-macos-arm.tar.gz
 
 # Extract
-tar -xzf midi_ctrl-macos.tar.gz
+tar -xzf midi_ctrl-macos-arm.tar.gz
 cd midi_ctrl
 
 # Start the server (no Elixir/Erlang required!)
@@ -79,7 +79,7 @@ cd midi_ctrl
 # Server runs on http://localhost:3000
 ```
 
-#### Option 2: From Source (Linux/Windows/Development)
+#### Option 2: From Source (Linux/Windows/Mac)
 
 ```bash
 # Clone the repository
@@ -389,7 +389,7 @@ Contributions are welcome! Please see [CLAUDE.md](CLAUDE.md) for development set
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-Copyright (c) 2025 Asep
+Copyright (c) 2025 Nanas Sound
 
 ## Acknowledgments
 
@@ -403,7 +403,7 @@ Copyright (c) 2025 Asep
 - **Documentation:** [CLAUDE.md](CLAUDE.md) (developers), [docs/](docs/) (MIDI references)
 - **MCP Specification:** https://modelcontextprotocol.io
 - **Claude Desktop:** https://claude.ai/download
-- **Issues & Feedback:** [GitHub Issues](https://github.com/yourusername/midi_ctrl/issues)
+- **Issues & Feedback:** [GitHub Issues](https://github.com/nanassound/midi_ctrl/issues)
 
 ---
 
