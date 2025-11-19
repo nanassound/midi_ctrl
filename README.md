@@ -9,6 +9,10 @@ You: "Make the filter brighter and increase resonance"
 AI: *adjusts Filter Cutoff (CC 23) and Resonance (CC 83) on your MicroFreak*
 ```
 
+## Demo
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pDzP7qzEF6I?si=ELqUYcA2CCqG9pd3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## What is This?
 
 ### MIDI (Musical Instrument Digital Interface)
