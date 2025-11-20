@@ -9,7 +9,7 @@ You: "Make the filter brighter and increase resonance"
 AI: *adjusts Filter Cutoff (CC 23) and Resonance (CC 83) on your MicroFreak*
 ```
 
-## Demo
+## Demo on YouTube
 
 [![MIDICtrl Demo](https://img.youtube.com/vi/pDzP7qzEF6I/0.jpg)](https://www.youtube.com/watch?v=pDzP7qzEF6I)
 
@@ -58,16 +58,14 @@ Your Arturia MicroFreak responds
 - Arturia MicroFreak connected via USB
 - MCP-compatible AI client (e.g., Claude Desktop)
 
-**For Linux/Windows users or developers:**
+**For Linux/Windows/Mac users or developers:**
 - Elixir 1.19+ and Erlang/OTP
 - Arturia MicroFreak connected via USB
 - MCP-compatible AI client (e.g., Claude Desktop)
 
 ### Installation
 
-#### Option 1: Pre-built Release (macOS only)
-
-**Note:** Pre-built releases are coming soon. Once available:
+#### Option 1: Pre-built Release (macOS Apple Silicon only)
 
 ```bash
 # Download the macOS release
@@ -118,7 +116,7 @@ _build/prod/rel/midi_ctrl/bin/midi_ctrl start
 
 Add MIDICtrl to your MCP client configuration. Here's an example for Claude Desktop:
 
-**macOS/Linux:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
@@ -411,4 +409,4 @@ Copyright (c) 2025 Nanas Sound
 
 ---
 
-**Made with AI assistance using Claude Code** 🎹🤖
+**Made together with AI assistance using Claude Code** 🎹🤖
